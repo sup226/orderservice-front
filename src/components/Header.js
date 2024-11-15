@@ -52,7 +52,7 @@ const Header = () => {
         const orderData = JSON.parse(event.data);
         console.log(orderData);
         setLiveQuantity((prev) => prev + 1);
-        setMessage(orderData.userEmail + '님의 주문!');
+        setMessage(orderData.userEmail + '님의 주문!!');
       });
 
       sse.onerror = (error) => {
