@@ -1,16 +1,16 @@
-# 워크플로우 이름 설정
+# 워크플로우의 이름을 작성.
 name: Deploy React App to S3
 
-# 어떤 작업에 의해 실행되는지
+# 워크플로우가 어떤 이벤트에서 실행될 지를 정의
 on:
   push:
     branches:
       - main # main 브랜치에 푸시될 때 실행
 
-# 워크플로우에서 실행할 작업을 정의함
+# 워크플로우에서 실행할 작업을 정의
 jobs:
   build-and-deploy:
-    runs-on: ubuntu-latest # 작업이 실행횔 환경
+    runs-on: ubuntu-latest # 작업이 실행될 환경
 
     steps:
       - uses: actions/checkout@v4 # 리포지토리 코드 체크아웃 -> 깃허브 액션이 코드를 사용할 수 있게 됨.
@@ -24,6 +24,7 @@ jobs:
         run: npm install # 의존성 설치
 
       - name: Build React App
+        # CI=false 옵션: CI환경에서 실행될 때 발생하는 경고를 무시하는 옵션.
         run: CI=false npm run build # 프로덕션 빌드 생성
 
       - name: Deploy to AWS S3
